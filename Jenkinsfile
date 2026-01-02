@@ -12,20 +12,20 @@ pipeline {
 
         stage('Code') {
             steps {
-                git 'https://github.com/gopi-wp/python-code-library-app.git'
+                git 'https://github.com/gopi-wp/app.py.git'
             }
         }
         stage('image build') {
             steps {
-               sh ' docker build -t app2 .'
+               sh ' docker build -t app3 .'
          }
         }
        stage('tag and push') {
           steps {
               script {
                     withDockerRegistry(credentialsId: 'docker-cred') {
-                     sh 'docker tag app2 gopibrahmaiah/library:app-v2'
-                     sh 'docker push gopibrahmaiah/library:app-v2'
+                     sh 'docker tag app3 gopibrahmaiah/library:app-v3'
+                     sh 'docker push gopibrahmaiah/library:app-v3'
                   }
               }
            }
